@@ -2,95 +2,137 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* ShiftBuddy Design System - NHS Healthcare Worker App
+   Primary: NHS Blue #005EB8
+   Accent: Warm Teal #00A9CE
+   Clean, supportive, professional medical UI
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    /* NHS Blue as primary - HSL: 207 100% 36% */
+    --primary: 207 100% 36%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Warm Teal accent - HSL: 193 100% 40% */
+    --accent: 193 100% 40%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Backgrounds */
+    --background: 210 20% 98%;
+    --foreground: 210 30% 15%;
+    
+    /* Cards - clean white */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 210 30% 15%;
+    
+    /* Muted - soft greys for fixed blocks */
+    --muted: 210 15% 93%;
+    --muted-foreground: 210 15% 45%;
+    
+    /* Secondary - lighter blue tint */
+    --secondary: 207 50% 95%;
+    --secondary-foreground: 207 100% 30%;
+    
+    /* Suggested blocks - light blue */
+    --suggested: 207 70% 94%;
+    --suggested-foreground: 207 100% 30%;
+    
+    /* Support/Success green */
+    --success: 152 60% 40%;
+    --success-foreground: 0 0% 100%;
+    
+    /* Warning amber */
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 100% 15%;
+    
+    /* Destructive/Alert */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Borders & inputs */
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 207 100% 36%;
+    
+    /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
+    --popover-foreground: 210 30% 15%;
+    
+    /* Radius - friendly rounded corners */
+    --radius: 0.75rem;
+    
+    /* Sidebar - not needed but keeping for shadcn */
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-primary: 207 100% 36%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 15% 93%;
+    --sidebar-accent-foreground: 210 30% 15%;
+    --sidebar-border: 210 20% 88%;
+    --sidebar-ring: 207 100% 36%;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(210 30% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(210 30% 15% / 0.08), 0 2px 4px -2px hsl(210 30% 15% / 0.05);
+    --shadow-lg: 0 10px 15px -3px hsl(210 30% 15% / 0.08), 0 4px 6px -4px hsl(210 30% 15% / 0.05);
+    --shadow-card: 0 2px 8px -2px hsl(210 30% 15% / 0.1), 0 1px 2px -1px hsl(210 30% 15% / 0.05);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark mode for Night Shift */
+    --background: 220 25% 10%;
+    --foreground: 210 20% 92%;
+    
+    --card: 220 25% 14%;
+    --card-foreground: 210 20% 92%;
+    
+    --primary: 207 90% 55%;
+    --primary-foreground: 220 25% 8%;
+    
+    --accent: 193 80% 50%;
+    --accent-foreground: 220 25% 8%;
+    
+    --muted: 220 20% 20%;
+    --muted-foreground: 210 15% 60%;
+    
+    --secondary: 220 25% 18%;
+    --secondary-foreground: 207 70% 70%;
+    
+    --suggested: 207 40% 20%;
+    --suggested-foreground: 207 70% 75%;
+    
+    --success: 152 50% 45%;
+    --success-foreground: 152 80% 10%;
+    
+    --warning: 38 80% 55%;
+    --warning-foreground: 38 100% 10%;
+    
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 20% 22%;
+    --input: 220 20% 22%;
+    --ring: 207 90% 55%;
+    
+    --popover: 220 25% 14%;
+    --popover-foreground: 210 20% 92%;
+    
+    --sidebar-background: 220 25% 10%;
+    --sidebar-foreground: 210 20% 92%;
+    --sidebar-primary: 207 90% 55%;
+    --sidebar-primary-foreground: 220 25% 8%;
+    --sidebar-accent: 220 20% 20%;
+    --sidebar-accent-foreground: 210 20% 92%;
+    --sidebar-border: 220 20% 22%;
+    --sidebar-ring: 207 90% 55%;
+    
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.4), 0 2px 4px -2px hsl(0 0% 0% / 0.3);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.4), 0 4px 6px -4px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.4), 0 1px 2px -1px hsl(0 0% 0% / 0.3);
   }
 }
 
@@ -99,7 +141,97 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  
+  /* Large touch targets for tired healthcare workers */
+  button, a, [role="button"] {
+    @apply min-h-[44px] min-w-[44px];
+  }
+}
+
+@layer components {
+  /* Card shadows */
+  .card-shadow {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .shadow-md-custom {
+    box-shadow: var(--shadow-md);
+  }
+  
+  .shadow-lg-custom {
+    box-shadow: var(--shadow-lg);
+  }
+  
+  /* Timeline block styles */
+  .block-fixed {
+    @apply bg-muted border-l-4 border-muted-foreground/30;
+  }
+  
+  .block-suggested {
+    @apply bg-suggested border-l-4 border-primary;
+  }
+  
+  .block-decompression {
+    @apply bg-gradient-to-r from-primary/10 to-accent/10 border-l-4 border-primary;
+  }
+  
+  /* Bottom sheet animation */
+  .bottom-sheet-enter {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Pulse animation for important actions */
+  .pulse-soft {
+    animation: pulseSoft 2s infinite;
+  }
+  
+  @keyframes pulseSoft {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+  
+  /* Safe area for mobile */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

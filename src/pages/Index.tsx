@@ -1,12 +1,38 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useApp } from '@/context/AppContext';
+import { BottomNavigation } from '@/components/BottomNavigation';
+import { DifficultEventModal } from '@/components/DifficultEventModal';
+import { FatigueWarningModal } from '@/components/FatigueWarningModal';
+import { EndOfShiftModal } from '@/components/EndOfShiftModal';
+import { TodayScreen } from '@/screens/TodayScreen';
+import { SwapsScreen } from '@/screens/SwapsScreen';
+import { ChatScreen } from '@/screens/ChatScreen';
+import { ProfileScreen } from '@/screens/ProfileScreen';
 
 const Index = () => {
+  const { activeTab } = useApp();
+
+  const renderScreen = () => {
+    switch (activeTab) {
+      case 'today':
+        return <TodayScreen />;
+      case 'swaps':
+        return <SwapsScreen />;
+      case 'chat':
+        return <ChatScreen />;
+      case 'profile':
+        return <ProfileScreen />;
+      default:
+        return <TodayScreen />;
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      {renderScreen()}
+      <BottomNavigation />
+      <DifficultEventModal />
+      <FatigueWarningModal />
+      <EndOfShiftModal />
     </div>
   );
 };
