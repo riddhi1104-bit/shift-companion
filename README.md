@@ -50,8 +50,8 @@ Microsoft Azure-powered chatbot learns your shift patterns and personalizes reco
 ## 🛠️ Tech Stack
 
 - **Frontend**: React 18 + TypeScript + Vite
-- **Styling**: Tailwind CSS + Radix UI (shadcn)
-- **State Management**: Context API
+- **Styling**: Tailwind CSS + Radix UI (shadcn/ui)
+- **State Management**: Context API + Custom Hooks
 - **AI**: Microsoft Azure Cognitive Services (integration ready)
 - **Icons**: Lucide React
 - **Routing**: React Router v6
@@ -60,29 +60,38 @@ Microsoft Azure-powered chatbot learns your shift patterns and personalizes reco
 
 ## ✅ Features Implemented
 
-✅ Onboarding flow (role, location, calendar connect)  
-✅ Today's Shift timeline with accept/move/dismiss breaks  
-✅ Difficult Event support flow with NHS postvention guidance  
-✅ Fatigue warning system (>6h without break)  
-✅ End-of-shift sleepiness check + driving safety  
-✅ Shift swap view with consecutive night warnings  
-✅ Peer chat with quick reply templates  
-✅ Night shift mode (optimized meal/hydration rules)  
-✅ AI chatbot interface (Azure integration planned)  
+✅ **Onboarding flow** (role selection, location, calendar connection)  
+✅ **Today's Shift timeline** with intelligent break suggestions  
+✅ **Accept/Move/Dismiss breaks** with user control  
+✅ **Difficult Event support flow** based on NHS postvention guidance  
+✅ **Fatigue warning system** (triggers after 6h without break)  
+✅ **End-of-shift sleepiness check** with driving safety alerts  
+✅ **Shift swap functionality** with consecutive night warnings  
+✅ **Peer chat** with quick reply templates for support culture  
+✅ **Night shift mode** with optimized meal/hydration timing  
+✅ **AI chatbot interface** (Microsoft Azure integration ready)  
 
 ---
 
 ## 🚀 Quick Start
 
+### Using Lovable (Easiest)
+
+1. Visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID)
+2. Click "Share" → "Preview" to see the live app
+3. Or click "Publish" to deploy publicly
+
+### Local Development
+
 ```bash
-# Clone repo
+# Clone repository
 git clone https://github.com/riddhi1104-bit/shift-companion.git
 cd shift-companion
 
 # Install dependencies
 npm install
 
-# Run development server
+# Start development server
 npm run dev
 
-# Open browser to http://localhost:5173
+# Open http://localhost:5173 in your browser
