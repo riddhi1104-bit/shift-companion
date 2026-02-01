@@ -7,9 +7,15 @@ import { TodayScreen } from '@/screens/TodayScreen';
 import { SwapsScreen } from '@/screens/SwapsScreen';
 import { ChatScreen } from '@/screens/ChatScreen';
 import { ProfileScreen } from '@/screens/ProfileScreen';
+import { OnboardingFlow } from '@/components/onboarding/OnboardingFlow';
 
 const Index = () => {
-  const { activeTab } = useApp();
+  const { activeTab, isOnboardingComplete, completeOnboarding } = useApp();
+
+  // Show onboarding if not complete
+  if (!isOnboardingComplete) {
+    return <OnboardingFlow onComplete={completeOnboarding} />;
+  }
 
   const renderScreen = () => {
     switch (activeTab) {

@@ -1,8 +1,16 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { ShiftBlock, Shift, DifficultEventStep, EndOfShiftStep, FeelingsLevel } from '@/data/types';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { ShiftBlock, Shift, DifficultEventStep, EndOfShiftStep, FeelingsLevel, UserProfile } from '@/data/types';
 import { mockShift, mockFixedBlocks, mockSuggestedBlocks, mockNightShiftBlocks } from '@/data/mockData';
 
+const STORAGE_KEY = 'shiftbuddy_user_profile';
+
 interface AppState {
+  // User profile & onboarding
+  userProfile: UserProfile | null;
+  isOnboardingComplete: boolean;
+  completeOnboarding: (userData: { role: string; location: string; calendarConnected: boolean }) => void;
+  resetOnboarding: () => void;
+  
   // Shift data
   shift: Shift;
   fixedBlocks: ShiftBlock[];
@@ -53,6 +61,35 @@ interface AppState {
 const AppContext = createContext<AppState | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
+  // Load user profile from localStorage
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        return JSON.parse(stored);
+      }
+    } catch (e) {
+      console.error('Failed to load user profile:', e);
+    }
+    return null;
+  });
+
+  const isOnboardingComplete = userProfile?.onboardingComplete ?? false;
+
+  const completeOnboarding = (userData: { role: string; location: string; calendarConnected: boolean }) => {
+    const profile: UserProfile = {
+      ...userData,
+      onboardingComplete: true,
+    };
+    setUserProfile(profile);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
+  };
+
+  const resetOnboarding = () => {
+    setUserProfile(null);
+    localStorage.removeItem(STORAGE_KEY);
+  };
+
   const [shift] = useState<Shift>(mockShift);
   const [fixedBlocks] = useState<ShiftBlock[]>(mockFixedBlocks);
   const [suggestedBlocks, setSuggestedBlocks] = useState<ShiftBlock[]>(mockSuggestedBlocks);
@@ -153,6 +190,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
   };
 
   const value: AppState = {
+    userProfile,
+    isOnboardingComplete,
+    completeOnboarding,
+    resetOnboarding,
     shift,
     fixedBlocks,
     suggestedBlocks: isNightShiftMode ? mockNightShiftBlocks : suggestedBlocks,
