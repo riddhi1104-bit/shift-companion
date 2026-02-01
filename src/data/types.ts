@@ -54,3 +54,11 @@ export interface ChatMessage {
 export type DifficultEventStep = 'initial' | 'pause' | 'scheduled' | 'check-in' | 'support';
 export type EndOfShiftStep = 'fatigue' | 'sleepiness' | 'warning' | 'complete';
 export type FeelingsLevel = 'okay' | 'shaken' | 'distressed';
+
+export interface UserProfile {
+  name?: string;
+  role: string;
+  location: string;
+  calendarConnected: boolean;
+  onboardingComplete: boolean;
+}

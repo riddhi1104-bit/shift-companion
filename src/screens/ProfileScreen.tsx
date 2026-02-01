@@ -1,8 +1,34 @@
-import { User, Settings, Bell, HelpCircle, LogOut, Clock } from 'lucide-react';
+import { User, Settings, Bell, HelpCircle, LogOut, Clock, RotateCcw } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 
+const roleLabels: Record<string, string> = {
+  'staff-nurse-5': 'Staff Nurse (Band 5)',
+  'staff-nurse-6-7': 'Staff Nurse (Band 6/7)',
+  'junior-doctor-fy': 'Junior Doctor (FY1/FY2)',
+  'junior-doctor-ct-st': 'Junior Doctor (CT1-3/ST)',
+  'consultant': 'Consultant',
+  'ahp': 'Allied Health Professional',
+  'hca': 'Healthcare Assistant',
+  'other': 'Healthcare Worker',
+};
+
+const locationLabels: Record<string, string> = {
+  'ed': 'Emergency Department',
+  'icu': 'Intensive Care Unit',
+  'ward-general': 'General Ward',
+  'theatre': 'Theatre',
+  'outpatients': 'Outpatients',
+  'community': 'Community',
+  'maternity': 'Maternity',
+  'mental-health': 'Mental Health',
+  'other': 'Healthcare',
+};
+
 export function ProfileScreen() {
-  const { openFatigueWarning, openEndOfShiftCheck } = useApp();
+  const { openFatigueWarning, openEndOfShiftCheck, userProfile, resetOnboarding } = useApp();
+
+  const roleDisplay = userProfile?.role ? roleLabels[userProfile.role] || 'Healthcare Worker' : 'Healthcare Worker';
+  const locationDisplay = userProfile?.location ? locationLabels[userProfile.location] || 'NHS' : 'NHS';
 
   return (
     <div className="min-h-screen bg-background pb-24">
@@ -18,8 +44,11 @@ export function ProfileScreen() {
           <div className="w-20 h-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
             <User className="w-10 h-10" />
           </div>
-          <h2 className="text-xl font-bold text-foreground">Healthcare Worker</h2>
-          <p className="text-muted-foreground">ICU • Band 5</p>
+          <h2 className="text-xl font-bold text-foreground">{roleDisplay}</h2>
+          <p className="text-muted-foreground">{locationDisplay}</p>
+          {userProfile?.calendarConnected && (
+            <p className="text-xs text-accent mt-1">📅 Calendar connected</p>
+          )}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-success/10 text-success rounded-full text-sm font-medium mt-3">
             <span className="w-2 h-2 bg-success rounded-full" />
             On shift
@@ -71,6 +100,13 @@ export function ProfileScreen() {
             className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary/10 text-primary rounded-xl font-medium hover:bg-primary/20 transition-colors border border-primary/20"
           >
             👏 Show End of Shift Check
+          </button>
+          <button
+            onClick={resetOnboarding}
+            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-muted text-muted-foreground rounded-xl font-medium hover:bg-muted/80 transition-colors border border-border"
+          >
+            <RotateCcw className="w-5 h-5" />
+            Restart Onboarding
           </button>
         </div>
 
