@@ -1,73 +1,88 @@
-# Welcome to your Lovable project
+# ShiftBuddy - AI-Powered NHS Shift Companion
 
-## Project info
+<div align="center">
+  
+  **Built for Imperial HealthHack 2026** 🏆
+  
+  An AI-powered shift companion that helps NHS healthcare workers manage fatigue, structure breaks, and access trauma support.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+  [![Tech Stack](https://img.shields.io/badge/React_18-TypeScript-blue)](.)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+  
+</div>
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🏥 The Problem
 
-**Use Lovable**
+**50% of NHS staff report burnout.** The reality of NHS shifts:
+- 12-hour days without proper breaks
+- 3+ consecutive nights with inadequate recovery  
+- Patient deaths with no structured support
+- Unsafe fatigue driving home after shift
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+**Current solutions don't help healthcare workers get through actual shifts safely.**
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 💡 Our Solution: ShiftBuddy
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+An AI-powered shift companion that sits on top of your rota and provides:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 🗓️ Shift-Aware Planning
+Structures breaks, meals, and hydration around actual 12-hour days and nights
 
-Follow these steps:
+### ⚠️ Safety Guardrails
+- Detects risky patterns (3+ consecutive nights, 36h stretches)
+- "Too tired to drive?" check at shift end
+- Fatigue warnings after 6 hours without break
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 💙 Trauma Support
+- Patient death flow: Pause → Decompression → Follow-up
+- Based on NHS postvention guidance
+- Support resource signposting
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 🤖 AI-Powered Personalization
+Microsoft Azure-powered chatbot learns your shift patterns and personalizes recommendations over time
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18 + TypeScript + Vite
+- **Styling**: Tailwind CSS + Radix UI (shadcn)
+- **State Management**: Context API
+- **AI**: Microsoft Azure Cognitive Services (integration ready)
+- **Icons**: Lucide React
+- **Routing**: React Router v6
+
+---
+
+## ✅ Features Implemented
+
+✅ Onboarding flow (role, location, calendar connect)  
+✅ Today's Shift timeline with accept/move/dismiss breaks  
+✅ Difficult Event support flow with NHS postvention guidance  
+✅ Fatigue warning system (>6h without break)  
+✅ End-of-shift sleepiness check + driving safety  
+✅ Shift swap view with consecutive night warnings  
+✅ Peer chat with quick reply templates  
+✅ Night shift mode (optimized meal/hydration rules)  
+✅ AI chatbot interface (Azure integration planned)  
+
+---
+
+## 🚀 Quick Start
+
+```bash
+# Clone repo
+git clone https://github.com/riddhi1104-bit/shift-companion.git
+cd shift-companion
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-```
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+# Open browser to http://localhost:5173
